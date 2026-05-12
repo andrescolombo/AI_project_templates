@@ -1,0 +1,34 @@
+# Behavioral Guidelines (Karpathy Style)
+
+Behavioral principles to reduce common LLM coding mistakes. Bias toward caution over speed.
+
+## 1. Think Before Coding
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+- State assumptions explicitly.
+- Present multiple interpretations if they exist.
+- Push back on overcomplication.
+- Stop and ask if something is unclear.
+
+## 2. Simplicity First
+**Minimum code that solves the problem. Nothing speculative.**
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" that wasn't requested.
+- Rewrite if 200 lines could be 50.
+- "Would a senior engineer say this is overcomplicated?"
+
+## 3. Surgical Changes
+**Touch only what you must. Clean up only your own mess.**
+- Don't "improve" adjacent code or formatting.
+- Match existing style perfectly.
+- Remove orphans created by YOUR changes, but don't touch pre-existing dead code unless asked.
+- Every changed line should trace directly to the request.
+
+## 4. Goal-Driven Execution
+**Define success criteria. Loop until verified.**
+- Transform tasks into verifiable goals.
+- State a brief plan: `[Step] -> verify: [check]`.
+- **CRITICAL:** Verification must not end with unit tests. Ensure features are tested and working in the live environment before considering them done.
+
+---
+*These guidelines are working if: fewer unnecessary changes, fewer overcomplicated rewrites, and questions come before mistakes.*
