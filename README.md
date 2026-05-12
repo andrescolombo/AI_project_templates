@@ -5,10 +5,11 @@ A compendium of normalized templates and guidelines for initializing and maintai
 ## Templates
 
 1.  **`AGENTS.md.template`**: Core project principles, security rules, and code conventions.
-2.  **`GUIDELINES.md.template`**: Karpathy-style behavioral guidelines for AI agents (Surgical, Simple, Goal-Driven).
-3.  **`CURSORRULES.template`**: Configuration for Cursor `.mdc` rules or `.cursorrules`.
-4.  **`HANDOVER.md.template`**: Standard format for transferring context between AI sessions.
-5.  **`HANDOVER_TASK.md.template`**: The prompt to give an AI when you want it to generate a handover.
+2.  **`CLAUDE.md.template`**: Behavioral guidelines for Claude Code and general agentic work.
+3.  **`GEMINI.md.template`**: Behavioral guidelines for Gemini-based tools.
+4.  **`CURSORRULES.template`**: Configuration for Cursor `.mdc` rules or `.cursorrules`.
+5.  **`HANDOVER.md.template`**: Standard format for transferring context between AI sessions.
+6.  **`HANDOVER_TASK.md.template`**: The prompt to give an AI when you want it to generate a handover.
 
 ## Key Concepts
 
@@ -28,7 +29,8 @@ Encapsulate storage and sensitive operations behind a central API to prevent AI 
 | Template File | Project File | Location | Purpose |
 |---|---|---|---|
 | `AGENTS.md.template` | `AGENTS.md` | Repo Root `/` | Core principles, tech stack, and safety rules. |
-| `GUIDELINES.md.template` | `CLAUDE.md` / `GEMINI.md` | Repo Root `/` | Behavioral guidelines (Karpathy style). |
+| `CLAUDE.md.template` | `CLAUDE.md` | Repo Root `/` | Behavioral guidelines for Claude Code. |
+| `GEMINI.md.template` | `GEMINI.md` | Repo Root `/` | Behavioral guidelines for Gemini tools. |
 | `CURSORRULES.template` | `project.mdc` | `.cursor/rules/` | Project-specific rules for Cursor AI. |
 | `HANDOVER.md.template` | `HANDOVER.md` | Repo Root `/` | Context transfer between AI sessions. |
 | `HANDOVER_TASK.md.template` | N/A | Anywhere | Copy-paste this prompt to ask the AI for a handover. |
