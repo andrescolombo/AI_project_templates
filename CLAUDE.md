@@ -2,6 +2,12 @@
 
 Behavioral principles to reduce common LLM coding mistakes. Bias toward caution over speed.
 
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+
+## 0. Use English
+**Always respond in English.**
+- Unless explicitly requested otherwise, all communication, including code comments, documentation, and commit messages, must be in English.
+
 ## 1. Think Before Coding
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 - State assumptions explicitly.
