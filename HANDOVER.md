@@ -1,75 +1,42 @@
 # Handover — {{PROJECT_NAME}}
 
-Generated: {{DATE}}. Read this before touching any file.
+Gen: {{DATE}}. **Read before starting.**
 
----
+## 1. Context & Goal
+- **Project:** {{PROJECT_GOAL_SUMMARY}}
+- **Vision:** {{LONG_TERM_VISION}}
+- **Milestone:** {{CURRENT_MILESTONE_SUMMARY}}
 
-## 1. Project Context & Ultimate Goal
-
-**{{PROJECT_NAME}}** is {{PROJECT_GOAL_SUMMARY}}.
-
-The ultimate goal is {{LONG_TERM_VISION}}.
-
-**Where we are:** {{CURRENT_MILESTONE_SUMMARY}}.
-
----
-
-## 2. Architecture & Tech Stack
-
+## 2. Architecture
 ```mermaid
 {{ARCHITECTURE_DIAGRAM_OR_TEXT}}
 ```
+- **Entry:** {{MAIN_ENTRYPOINT}}
+- **Infra:** {{INFRASTRUCTURE_DETAILS}}
+- **Env:** `.env`
 
-**Key Configuration:**
-- **Env file:** `.env`
-- **Main Entrypoint:** {{MAIN_ENTRYPOINT}}
-- **Infrastructure:** {{INFRASTRUCTURE_DETAILS}} (e.g., Docker, SQLite, etc.)
-
----
-
-## 3. Current State of the Code
-
-### What's working (E2E Verified)
-
+## 3. Current State
+### Verified (E2E)
 | Feature | Status |
 |---|---|
 | {{FEATURE_1}} | ✅ |
-| {{FEATURE_2}} | ✅ |
 
-### Completed this session
-
-- **{{WORK_PACKAGE_1}}**: {{DETAILS}}
-- **{{WORK_PACKAGE_2}}**: {{DETAILS}}
-
----
+### Completed Session
+- **{{PACKAGE}}**: {{DETAILS}}
 
 ## 4. Active Files
-
 | File | Role |
 |---|---|
-| {{FILE_PATH}} | {{RESPONSIBILITY}} |
+| {{PATH}} | {{RESPONSIBILITY}} |
 
----
+## 5. Blockers & Dead Ends
+- **Failed:** {{ATTEMPT_DESCRIPTION}} (Avoid this).
+- **Bug:** {{BUG_ID}} (Context).
 
-## 5. Dead Ends & Failed Attempts
+## 6. Immediate Next
+**Task:** {{NEXT_TASK_NAME}} ({{NEXT_TASK_GOAL}})
+1. {{STEP_1}}
+2. {{STEP_2}}
 
-- **{{ATTEMPT_DESCRIPTION}}**: Why it failed and what to avoid.
-- **{{BUG_ID}}**: Context on transient or tricky issues.
-
----
-
-## 6. Immediate Next Steps
-
-### Task: {{NEXT_TASK_NAME}}
-
-**Goal:** {{NEXT_TASK_GOAL}}
-
-1. **Step 1**: {{INSTRUCTION}}
-2. **Step 2**: {{INSTRUCTION}}
-
----
-
-## 7. Pending Roadmap Items
-
+## 7. Roadmap
 - [ ] {{ROADMAP_ITEM_1}}
-- [ ] {{ROADMAP_ITEM_2}}

@@ -1,40 +1,31 @@
-# Behavioral Guidelines (Karpathy Style)
+# CLAUDE.md - Behavioral Guidelines
 
-Behavioral principles to reduce common LLM coding mistakes. Bias toward caution over speed.
+Bias: **Caution > Speed**. Use judgment for trivial tasks.
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
-
-## 0. Use English
-**Always respond in English.**
-- Unless explicitly requested otherwise, all communication, including code comments, documentation, and commit messages, must be in English.
+## 0. Communication
+- **English Only:** All code, comments, docs, and commits.
+- **Surface Tradeoffs:** Don't hide confusion or assumptions.
 
 ## 1. Think Before Coding
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
 - State assumptions explicitly.
-- Present multiple interpretations if they exist.
-- Push back on overcomplication.
-- Stop and ask if something is unclear.
+- Present interpretation options.
+- Push back on overcomplication. Stop and ask if unclear.
 
 ## 2. Simplicity First
-**Minimum code that solves the problem. Nothing speculative.**
-- No features beyond what was asked.
+- **Min code = Solution.** No speculative features.
 - No abstractions for single-use code.
-- No "flexibility" that wasn't requested.
-- Rewrite if 200 lines could be 50.
-- "Would a senior engineer say this is overcomplicated?"
+- If 200 lines could be 50, rewrite.
+- Target: "Senior Engineer Approved" simplicity.
 
 ## 3. Surgical Changes
-**Touch only what you must. Clean up only your own mess.**
-- Don't "improve" adjacent code or formatting.
-- Match existing style perfectly.
-- Remove orphans created by YOUR changes, but don't touch pre-existing dead code unless asked.
-- Every changed line should trace directly to the request.
+- Touch only necessary lines. Match existing style perfectly.
+- Clean up ONLY your orphans. Don't refactor adjacent code.
+- Every change must trace directly to the request.
 
 ## 4. Goal-Driven Execution
-**Define success criteria. Loop until verified.**
-- Transform tasks into verifiable goals.
-- State a brief plan: `[Step] -> verify: [check]`.
-- **CRITICAL:** Verification must not end with unit tests. Ensure features are tested and working in the live environment before considering them done.
+- Task -> Verifiable Goals.
+- Plan format: `[Step] -> verify: [check]`.
+- **Live Test Rule:** Verification MUST happen in live/staging env. Unit tests != Done.
 
 ---
-*These guidelines are working if: fewer unnecessary changes, fewer overcomplicated rewrites, and questions come before mistakes.*
+*Success = Fewer changes, zero speculative rewrites, questions before mistakes.*

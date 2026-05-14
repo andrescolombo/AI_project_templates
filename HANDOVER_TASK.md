@@ -1,11 +1,13 @@
-Before ending a session, generate a comprehensive `HANDOVER.md` update (or new file) to transfer exact context. Include:
+# Handover Task Prompt
 
-1. **Project Context & Ultimate Goal**: Brief summary.
-2. **Architecture & Tech Stack**: Languages, frameworks, local setups, endpoints.
-3. **Current State**: What works and progress made this session.
-4. **Active Files**: Precise paths being edited.
-5. **Dead Ends**: Detail everything that didn't work (errors, flawed logic) to avoid repetition.
-6. **Pending Blockers**: Unresolved errors or bottlenecks.
-7. **Immediate Next Steps**: Crystal clear instructions for the next session.
+Generate a updated `HANDOVER.md` before session end. Include:
 
-**Notation**: Append to `HANDOVER.md` with timestamps.
+1. **Context:** Summary of project goal & current state.
+2. **Architecture:** Stack, endpoints, and infra.
+3. **Progress:** E2E verified features + session updates.
+4. **Active Files:** Paths currently being edited.
+5. **Dead Ends:** Logic/errors that failed (to avoid repetition).
+6. **Blockers:** Unresolved bottlenecks.
+7. **Next Steps:** Clear instructions for the next session.
+
+**Format:** Append to `HANDOVER.md` with timestamps.
