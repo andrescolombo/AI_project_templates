@@ -8,7 +8,8 @@
 # Override templates location with env var: $env:AI_TEMPLATES_DIR
 
 param(
-    [string]$Path = (Get-Location)
+    [string]$Path = (Get-Location),
+    [switch]$Copy # Set this flag to copy instead of symlink
 )
 
 $files = @(
@@ -23,56 +24,68 @@ $files = @(
 
 # Resolve templates directory
 if ($env:AI_TEMPLATES_DIR) {
-    $templates = $env:AI_TEMPLATES_DIR
+    $baseDir = $env:AI_TEMPLATES_DIR
 } elseif ($IsWindows -or $env:OS -eq "Windows_NT") {
-    $templates = "D:\Desarrollo\.ai-templates"
+    $baseDir = "D:\Desarrollo\.ai-templates"
 } else {
-    $templates = "$HOME/Desarrollo/.ai-templates"
+    $baseDir = "$HOME/Desarrollo/.ai-templates"
 }
 
-# Elevation check for Windows (required for SymbolicLinks)
-$isWin = $IsWindows -or $env:OS -eq "Windows_NT"
-if ($isWin -and -not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "Requesting administrator privileges to create symbolic links..."
-    $argList = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Path `"$Path`""
-    try {
-        Start-Process powershell.exe -ArgumentList $argList -Verb RunAs -Wait
-        exit
-    } catch {
-        Write-Warning "Elevation failed or was cancelled. Script might fail to create symbolic links."
+$templates = $baseDir
+
+# Elevation check for Windows (required for SymbolicLinks if not copying)
+if (-not $Copy) {
+    $isWin = $IsWindows -or $env:OS -eq "Windows_NT"
+    if ($isWin -and -not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        Write-Host "Requesting administrator privileges to create symbolic links..." -ForegroundColor Cyan
+        $argList = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Path `"$Path`""
+        try {
+            Start-Process powershell.exe -ArgumentList $argList -Verb RunAs -Wait
+            exit
+        } catch {
+            Write-Warning "Elevation failed or was cancelled. Script might fail to create symbolic links."
+        }
     }
 }
 
 if (-not (Test-Path $templates)) {
     Write-Error "Templates directory not found: $templates"
-    Write-Host "Set `$env:AI_TEMPLATES_DIR to point to your .ai-templates clone."
+    Write-Host "Set `$env:AI_TEMPLATES_DIR to point to your .ai-templates clone." -ForegroundColor Yellow
     exit 1
 }
 
 $target = $Path
+Write-Host "Initializing AI templates in: $target" -ForegroundColor Green
+Write-Host "Using templates from: $templates" -ForegroundColor Gray
+Write-Host "----------------------------------------------------"
 
 foreach ($file in $files) {
     $src = Join-Path $templates $file
     $dst = Join-Path $target $file
 
     if (-not (Test-Path $src)) {
-        Write-Host "Skipped (not in templates): $file"
+        Write-Host "[-] Skipped (not in templates folder): $file" -ForegroundColor Yellow
         continue
     }
 
     if (Test-Path $dst) {
-        Write-Host "Skipped (already exists): $file"
+        Write-Host "[!] Skipped (already exists in target): $file" -ForegroundColor Gray
         continue
     }
 
     try {
-        New-Item -ItemType SymbolicLink -Path $dst -Target $src -Force -ErrorAction Stop | Out-Null
-        Write-Host "Linked: $file"
+        if ($Copy) {
+            Copy-Item -Path $src -Destination $dst -Force -ErrorAction Stop
+            Write-Host "[+] Copied: $file" -ForegroundColor Green
+        } else {
+            New-Item -ItemType SymbolicLink -Path $dst -Target $src -Force -ErrorAction Stop | Out-Null
+            Write-Host "[+] Linked: $file" -ForegroundColor Green
+        }
     } catch {
-        Write-Error "Failed to link $file. Error: $($_.Exception.Message)"
+        Write-Error "Failed to process $file. Error: $($_.Exception.Message)"
     }
 }
 
-Write-Host ""
-Write-Host "Done. AI templates linked in $target"
+Write-Host "----------------------------------------------------"
+Write-Host "Done. AI templates ready in $target" -ForegroundColor Green
 

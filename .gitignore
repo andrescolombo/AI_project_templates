@@ -1,0 +1,19 @@
+# Git
+.git/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code / IDEs
+.vscode/
+.idea/
+
+# Local setup files
+*.local
+.env
+.env.local
+
+# Temp files
+*.tmp
+*.log
